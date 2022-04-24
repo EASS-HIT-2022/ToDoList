@@ -1,7 +1,7 @@
 # Todo List API
 
 * This is a todo-list API built with FastAPI which is a modern, fast (high-performance), web framework for building APIs.
-* data are stored in memory (no database used) data are stored in memory (no database used for now)
+* data is stored in memory (no database used for now)
 * This is currently only Backend at the moment.
 * Dockerized so it's simple to install!
 

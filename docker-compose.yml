@@ -1,0 +1,26 @@
+version: "3.8"
+services: 
+  backend:
+    build: app/backend
+    command: uvicorn main:app --host 0.0.0.0 --port 8086
+    volumes:
+      - ./app/backend:/usr/src/app/
+    ports:
+      - 8000:8086
+    networks:
+      - network
+    container_name: backend
+  frontend:
+    build: app/frontend
+    command: streamlit run main.py --server.port 8080
+    volumes:
+      - ./app/frontend:/usr/src/app/
+    ports:
+      - 7000:8080
+    networks:
+      - network
+    container_name: frontend
+networks:
+  network:
+    driver: bridge
+

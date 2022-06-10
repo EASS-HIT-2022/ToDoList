@@ -1,46 +1,38 @@
-# Todo List API
-
-* This is a todo-list API built with FastAPI which is a modern, fast (high-performance), web framework for building APIs.
-* data is stored in memory (no database used for now)
-* This is currently only Backend at the moment.
-* Dockerized so it's simple to install!
-
+# ToDo List App
+### FastAPI for backend and Streamlit for frontend
+-------
 ## Installation
+#### Run Docker (With docker-compose)
+ `docker-compose -d --build`
 
-1. Clone the Project:
-```
-git clone  https://github.com/EASS-HIT-2022/ex1-itai.git
-```
+**In order to go to the app itself head to:**
+`http://127.0.0.1:7000/`
 
-2. Build the image:
-```
-docker build -t todo-api . -f Dockerfile
-```
-3. Run the image:
-```
-docker run -ti -p 8888:8086 todo-api
-```
+**In order to go to the backend API head to:**
+`http://127.0.0.1:8000/`
+-------
 ## Features
-* Adding a task
-* Getting a task
-* Getting all tasks
-* Remove a task
-* Update a task
 
+- Database is via File.
+- FastAPI for the backend CRUD based. (more info on the backend readme)
+- Streamlit neat interface for the frontline.
+- Docker-compose to fit together both of the services.
+- Backend unit tests.
+------
+## To Be added
+- Third redis service.
+- Integration Test
+- Maybe some more features
+-----
+## Screens and Preview
 
-## Testing
-In order to test I've set up few tests with pytest.
-Just use:
-```
-pytest -m
-```
-or:
-```
-python3.9 -m pytest
-```
-## Screenshot
+#### Create a Task:
+![Creating a task](https://puu.sh/J57mx/188ba2233f.gif)
 
-### The API:
-![Image](https://puu.sh/IWBEg/0b89c9ada5.png)
-### Testing:
-![Testing](https://puu.sh/IWBHn/984b7f6bba.png)
+#### Delete a task:
+![Deleting a task](https://puu.sh/J57nP/9b99ea7e29.gif)
+
+#### Update a task:
+![Update a Task](https://puu.sh/J57oA/1273a1023d.gif)
+
+-------

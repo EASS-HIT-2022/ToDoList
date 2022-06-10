@@ -22,8 +22,8 @@
 ------
 ## To Be added
 - Third redis service.
-- Integration Test
-- Maybe some more features
+- Integration test.
+- Maybe some more features.
 -----
 ## Screens and Preview
 

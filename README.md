@@ -18,7 +18,7 @@
 - Database is redis for highly performance
 - FastAPI for the backend CRUD based. (more info on the backend readme)
 - Streamlit neat interface for the frontline.
-- Docker-compose to fit together both of the services.
+- Docker-compose to fit together all of the services.
 - Backend unit tests.
 ------
 
@@ -44,13 +44,13 @@ Using Redis, Redis is an in-memory data structure store, used as a distributed, 
 ## Screens and Preview
 
 #### Create a Task:
-![Creating a task](https://s8.gifyu.com/images/J4upY5kiMA.gif)
+![](https://i.imgur.com/VaI3iA4.gif)
 
 #### Delete a task:
-![Deleting a task](https://puu.sh/J57nP/9b99ea7e29.gif)
+![](https://puu.sh/J57nP/9b99ea7e29.gif)
 
 #### Update a task:
-![Update a Task](https://puu.sh/J57oA/1273a1023d.gif)
+![](https://puu.sh/J57oA/1273a1023d.gif)
 
 -------
 ## Testing

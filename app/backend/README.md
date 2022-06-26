@@ -9,7 +9,7 @@
 
 1. Clone the Project:
 ```
-git clone  https://github.com/EASS-HIT-2022/ex1-itai.git
+git clone  https://github.com/EASS-HIT-2022/ToDoList.git
 ```
 
 2. Build the image:
@@ -29,18 +29,13 @@ docker run -ti -p 8888:8086 todo-api
 
 
 ## Testing
-In order to test I've set up few tests with pytest.
-Just use:
-```
-pytest -m
-```
-or:
-```
-python3.9 -m pytest
-```
+1. Comment in backend/main.py lines 6 & 7 and uncomment lines 10 & 11.
+2. run this command: `docker-compose run --service-ports backend bash`
+3. last but not least, run: `pytest`
+
 ## Screenshot
 
 ### The API:
-![Image](https://puu.sh/IWBEg/0b89c9ada5.png)
+![Api](https://puu.sh/J83Sn/9b74a032e3.png)
 ### Testing:
-![Testing](https://puu.sh/IWBHn/984b7f6bba.png)
+![Testing](https://puu.sh/J83Rx/8fcbdfb95f.png)

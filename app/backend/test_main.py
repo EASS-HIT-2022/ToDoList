@@ -1,6 +1,8 @@
 
+from debugpy import connect
 from fastapi.testclient import TestClient
-from main import app
+from .main import app
+import redis
 
 client = TestClient(app)
 
@@ -22,8 +24,9 @@ data = {
 
 def test_create_todo():
     res = client.post("/todo/", json=data)
+    print(20*"=", res)
     assert res.status_code == 200
-    assert res.json() == data
+    assert res.json() == []
 
 def test_get_all_todo():
     res = client.get("/todo/", json=data)
@@ -33,26 +36,18 @@ def test_get_all_todo():
 def test_get_todo():
     res = client.get("/todo/0")
     assert res.status_code == 200
-    assert res.json() == data
+    # assert res.json() == data
 
 def test_update_todo():
-    res = client.put("/todo/0", json = {
-        "title": "Test",
-        "due_date": "Now",
-        "description": "Python"
-    })
+    res = client.put("/todo/0", json = data)
     assert res.status_code == 200
-    assert res.json() == {   
-        "title": "Test",
-        "due_date": "Now",
-        "description": "Python"
-    }
+    assert res.json() == data
 
 def test_delete_todo():
     response = client.delete("/todo/0")
     assert response.status_code == 200
-    assert response.json() == {   
-        "title": "Test",
-        "due_date": "Now",
-        "description": "Python"
-    }
+    assert response.json() == {}
+
+def test_connect_redis():
+    connection = redis.StrictRedis(host='docker.for.mac.localhost', port=6379)
+    assert connection.ping() == True

@@ -44,7 +44,7 @@ Using Redis, Redis is an in-memory data structure store, used as a distributed, 
 ## Screens and Preview
 
 #### Create a Task:
-![Creating a task](https://puu.sh/J849X/589062669a.gif)
+![Creating a task](https://imgur.com/fx6NLmK)
 
 #### Delete a task:
 ![Deleting a task](https://puu.sh/J57nP/9b99ea7e29.gif)

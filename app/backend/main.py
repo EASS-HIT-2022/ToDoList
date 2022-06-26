@@ -1,8 +1,15 @@
 from fastapi import FastAPI,HTTPException
 from pydantic import BaseModel
 from typing import Optional, List
+
+import redis
 from models import Todo
-from database import local_db
+from database import local_db, redis_con, convertor
+
+# Just for testting
+# from .models import Todo
+# from .database import local_db, redis_con, convertor
+
 import json
 
 import uvicorn
@@ -25,67 +32,65 @@ async def home():
 
 @app.post('/todo/')
 async def create_todo(todo: Todo):
-    with open("./data.json", "r") as file:
-        store_todo = json.load(file)
+    todo_dict = todo.dict()
+    redis_con.hmset(todo_dict.get('title'), todo.dict())
 
-    store_todo.append(todo.dict())
-
-    with open("./data.json", "w") as file:
-        json.dump(store_todo,file)
     return store_todo
 
 @app.get('/todo/', response_model=List[Todo])
 async def get_all_todos():
-    with open("./data.json", "r") as file:
-        store_todo = json.load(file)
-    return store_todo
+    store_todo_redis = list()
+    list_key = [data.decode('ascii') for data in convertor(redis_con.keys())]
+    for key in list_key:
+        row = redis_con.hgetall(key)
+        row = convertor(row)
+        store_todo_redis.append(row)
+
+    return store_todo_redis
 
 @app.get('/todo/{title}')
 async def get_todo(title: str):
-    with open("./data.json", "r") as file:
-        store_todo = json.load(file)
+    store_todo_redis = list()
+    list_key = [data.decode('ascii') for data in convertor(redis_con.keys())]
+    for key in list_key:
+        row = redis_con.hgetall(key)
+        row = convertor(row)
+        store_todo_redis.append(row)
     
-    for task in store_todo:
-        for attribute, value in task.items():
-            if attribute == "title":
-                if value == title:
-                    return task
     return {}
 
         
 
 @app.put('/todo/{title}')
 async def update_todo(title: str, todo: Todo):
-    with open("./data.json", "r") as file:
-        store_todo = json.load(file)
-    for task in store_todo:
-        for attribute, value in task.items():
-            if attribute == "title":
-                if value == todo.title:
-                    task['description'] = todo.description
-                    task['due_date'] = todo.due_date
-    with open("./data.json", "w") as file:
-        json.dump(store_todo,file)
-    return store_todo
+
+    if redis_con.hgetall(title):
+        # update value in here
+        if title == todo.title:
+            redis_con.hset(title, 'description', todo.description)
+            redis_con.hset(title, 'due_date', todo.due_date)
+
+    return todo.dict()
     
 
 
 @app.delete('/todo/{title}')
 async def delete_todo(title: str):
 
-    with open("./data.json", "r") as file:
-        store_todo = json.load(file)
-    store_todo2 = []
-    for task in store_todo:
-        for attribute, value in task.items():
-            if attribute == "title":
-                 if value != title:
-                    store_todo2.append(task)
-    with open("./data.json", "w") as file:
-         json.dump(store_todo2,file)
-    return store_todo2
+    # get a value given a key
+    if redis_con.hgetall(title):
+        # Delete a row given hash key
+        redis_con.delete(title)
     
-
+    store_todo_redis = list()
+    list_key = [data.decode('ascii') for data in convertor(redis_con.keys())]
+    for key in list_key:
+        row = redis_con.hgetall(key)
+        row = convertor(row)
+        store_todo_redis.append(row)
+    
+    return {}
+    
 
 if __name__ == "__main__":
     uvicorn.run(app)

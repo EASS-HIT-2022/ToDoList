@@ -6,7 +6,7 @@ import redis
 from models import Todo
 from database import local_db, redis_con, convertor
 
-# Just for testting
+# Just for testing
 # from .models import Todo
 # from .database import local_db, redis_con, convertor
 

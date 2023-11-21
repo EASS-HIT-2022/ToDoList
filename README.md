@@ -42,19 +42,21 @@ Using Redis, Redis is an in-memory data structure store, used as a distributed, 
 - [ ] Maybe some more features.
 -----
 ## Screens and Preview
+#### API (Via fastAPI)
+![API](https://github.com/EASS-HIT-2022/ToDoList/blob/main/Screenshots/brave_atOjo8emnK.png)
 
 #### Create a Task:
-![](https://i.imgur.com/VaI3iA4.gif)
+![Create Task](https://github.com/EASS-HIT-2022/ToDoList/blob/main/Screenshots/J4upY5kiMA.gif)
 
 #### Delete a task:
-![](https://puu.sh/J57nP/9b99ea7e29.gif)
+![Delete Task](https://github.com/EASS-HIT-2022/ToDoList/blob/main/Screenshots/UZfgFffn7X.gif)
 
 #### Update a task:
-![](https://puu.sh/J57oA/1273a1023d.gif)
+![Update Task](https://github.com/EASS-HIT-2022/ToDoList/blob/main/Screenshots/1a1gkQV89w.gif)
 
 -------
 ## Testing
 1. Comment in backend/main.py lines 6 & 7 and uncomment lines 10 & 11.
 2. run this command: `docker-compose run --service-ports backend bash`
 3. last but not least, run: `pytest`
-4. ![Results](https://puu.sh/J83Rx/8fcbdfb95f.png)
+4. ![Results]([https://puu.sh/J83Rx/8fcbdfb95f.png](https://github.com/EASS-HIT-2022/ToDoList/blob/main/Screenshots/Code_FN2dXEepdB.png)https://github.com/EASS-HIT-2022/ToDoList/blob/main/Screenshots/Code_FN2dXEepdB.png)
